@@ -1,5 +1,5 @@
-#ifndef __adafruit_ssd1306_h__
-#define __adafruit_ssd1306_h__
+#ifndef __crynsnd_adafruit_ssd1306_h__
+#define __crynsnd_adafruit_ssd1306_h__
 
 #include <stdio.h>
 
@@ -65,4 +65,4 @@ class Adafruit_SSD1306 {
 
 }  // namespace crynsnd
 
-#endif  // __adafruit_ssd1306_h__
+#endif  // __crynsnd_adafruit_ssd1306_h__

@@ -1,5 +1,5 @@
-#ifndef __adafruit_ssd1306_text_manager_h__
-#define __adafruit_ssd1303_text_manager_h__
+#ifndef __crynsnd_text_manager_h__
+#define __crynsnd_text_manager_h__
 
 #include <string>
 
@@ -27,4 +27,4 @@ class TextManager {
 
 }  // namespace crynsnd
 
-#endif  // __adafruit_ssd1303_text_manager_h__
+#endif  // __crynsnd_text_manager_h__

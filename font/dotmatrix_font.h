@@ -1,5 +1,5 @@
-#ifndef __adafruit_ssd1306_dotmatrix_font_h__
-#define __adafruit_ssd1306_dotmatrix_font_h__
+#ifndef __crynsnd_font_dotmatrix_font_h__
+#define __crynsnd_font_dotmatrix_font_h__
 
 #include <cstdio>
 
@@ -408,4 +408,4 @@ class DotMatrix : public Font {
 }  // namespace fonts
 }  // namespace crynsnd
 
-#endif  // __adafruit_ssd1306_dotmatrix_font_h__
+#endif  // __crynsnd_font_dotmatrix_font_h__
