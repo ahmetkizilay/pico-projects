@@ -10,7 +10,7 @@ class Font {
  public:
   explicit Font(const uint8_t* font_data) : font(font_data) {}
 
-  virtual const uint8_t GetLetterWidth() const = 0;
+  virtual const uint8_t GetLetterWidth(char val) const = 0;
   virtual const uint16_t GetLetterIndex(char val) const = 0;
   const uint8_t* font;
 };

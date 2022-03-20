@@ -401,7 +401,7 @@ static const uint8_t FONT[] = {
 class DotMatrix : public Font {
  public:
   DotMatrix();
-  const uint8_t GetLetterWidth() const { return internal::LETTER_WIDTH; }
+  const uint8_t GetLetterWidth(char _) const { return internal::LETTER_WIDTH; }
   const uint16_t GetLetterIndex(char val) const;
 };
 
