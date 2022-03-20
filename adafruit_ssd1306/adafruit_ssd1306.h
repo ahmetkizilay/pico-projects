@@ -37,6 +37,9 @@ namespace crynsnd {
 
 #define SPI_PORT spi0
 
+// This is based on the library by Adafruit. https://github.com/adafruit/Adafruit_SSD1306
+// Specifically, the Adafruit library was useful to set the commands to interact with the SSD106
+// chip.
 class Adafruit_SSD1306 {
  public:
   Adafruit_SSD1306(const uint8_t width, const uint8_t height);
