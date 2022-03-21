@@ -95,8 +95,10 @@ void Adafruit_SSD1306::SetGlyph(uint16_t offset, const uint8_t *data, const uint
 }
 
 void Adafruit_SSD1306::Display() {
-  static const uint8_t pre_write[] = {SSD1306_PAGE_ADDRESS,   0,   0xFF,
-                                      SSD1306_COLUMN_ADDRESS, 0x0, (uint8_t)(width_ - 1)};
+  static const uint8_t pre_write[] = {
+      SSD1306_PAGE_ADDRESS,  MemoryPage::PAGE_0, MemoryPage::PAGE_7, SSD1306_COLUMN_ADDRESS, 0x0,
+      (uint8_t)(width_ - 1),
+  };
   WriteCommand(pre_write, sizeof(pre_write));
 
   gpio_put(DORC, 1);
