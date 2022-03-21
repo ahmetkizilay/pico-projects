@@ -9,7 +9,10 @@ namespace crynsnd {
 #define SSD1306_MEMORYMODE 0x20
 #define SSD1306_COLUMN_ADDRESS 0x21
 #define SSD1306_PAGE_ADDRESS 0x22
+// 0x26 scroll right, 0x27 scroll left
+#define SSD1306_HORIZONTAL_SCROLL_DIRECTION 0x26
 #define SSD1306_DEACTIVATE_SCROLL 0x2E
+#define SSD1306_ACTIVATE_SCROLL 0x2F
 #define SSD1306_SETSTARTLINE 0x40
 #define SSD1306_SETCONTRAST 0x81
 #define SSD1306_CHARGEPUMP 0x8D
@@ -37,6 +40,23 @@ namespace crynsnd {
 
 #define SPI_PORT spi0
 
+enum HorizontalScrollDirection {
+  SCROLL_RIGHT,
+  SCROLL_LEFT,
+};
+
+enum ScrollFrameRate { RATE_5, RATE_64, RATE_128, RATE_256, RATE_3, RATE_4, RATE_25, RATE_2 };
+
+enum MemoryPage {
+  PAGE_0,
+  PAGE_1,
+  PAGE_2,
+  PAGE_3,
+  PAGE_4,
+  PAGE_6,
+  PAGE_7,
+};
+
 // This is based on the library by Adafruit. https://github.com/adafruit/Adafruit_SSD1306
 // Specifically, the Adafruit library was useful to set the commands to interact with the SSD106
 // chip.
@@ -50,6 +70,9 @@ class Adafruit_SSD1306 {
   void SetPixel(uint8_t x, uint8_t y);
   void Display();
   void SetGlyph(uint16_t offset, const uint8_t *data, const uint8_t len);
+  void ScrollHorizontally(HorizontalScrollDirection direction, MemoryPage page_start,
+                          MemoryPage page_end, ScrollFrameRate frame_rate);
+  void StopScroll();
 
   const uint8_t GetWidth() const { return width_; }
   const uint8_t GetHeight() const { return height_; }

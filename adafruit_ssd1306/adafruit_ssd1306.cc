@@ -47,10 +47,9 @@ void Adafruit_SSD1306::Init() {
 
   static const uint8_t init1[] = {SSD1306_DISPLAYOFF,
                                   // Suggested ration is 0x80
-                                  SSD1306_SETDISPLAYCLOCKDIV, 0x80, 
+                                  SSD1306_SETDISPLAYCLOCKDIV, 0x80,
                                   // Multiplex ratio needs to be between 16 and 63.
-                                  SSD1306_SETMULTIPLEX,
-                                  (uint8_t)(height_ - 1)};
+                                  SSD1306_SETMULTIPLEX, (uint8_t)(height_ - 1)};
   WriteCommand(init1, sizeof(init1));
 
   static const uint8_t init2[] = {SSD1306_SETDISPLAYOFFSET, 0, SSD1306_SETSTARTLINE | 0x0,
@@ -91,7 +90,7 @@ void Adafruit_SSD1306::SetPixel(uint8_t x, uint8_t y) {
   buffer_[x + (y / 8) * width_] |= (1 << (y % 8));
 }
 
-void Adafruit_SSD1306::SetGlyph(uint16_t offset, const uint8_t* data, const uint8_t len) {
+void Adafruit_SSD1306::SetGlyph(uint16_t offset, const uint8_t *data, const uint8_t len) {
   memcpy(&buffer_[offset], data, len);
 }
 
@@ -111,6 +110,29 @@ void Adafruit_SSD1306::WriteCommand(const uint8_t *payload, uint8_t payload_size
   gpio_put(CS, 0);  // Indicate beginning of communication
   spi_write_blocking(SPI_PORT, payload, payload_size);
   gpio_put(CS, 1);  // Signal end of communication
+}
+
+void Adafruit_SSD1306::ScrollHorizontally(HorizontalScrollDirection direction,
+                                          MemoryPage page_start, MemoryPage page_end,
+                                          ScrollFrameRate frame_rate) {
+  static const uint8_t command[] = {
+      SSD1306_DEACTIVATE_SCROLL,
+      static_cast<uint8_t>(SSD1306_HORIZONTAL_SCROLL_DIRECTION | direction),
+      0x00,  // dummy byte
+      page_start,
+      frame_rate,
+      page_end,  // Scroll end
+      0x00,      // Dummy byte
+      0xFF,      // Dummy byte
+      SSD1306_ACTIVATE_SCROLL};
+  WriteCommand(command, sizeof(command));
+}
+
+void Adafruit_SSD1306::StopScroll() {
+  static const uint8_t command[] = {
+      0x2E,  // Deactivate scrolling
+  };
+  WriteCommand(command, sizeof(command));
 }
 
 }  // namespace crynsnd

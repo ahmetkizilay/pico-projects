@@ -15,6 +15,9 @@
 #define HEIGHT 64
 
 using ::crynsnd::Adafruit_SSD1306;
+using ::crynsnd::HorizontalScrollDirection;
+using ::crynsnd::MemoryPage;
+using ::crynsnd::ScrollFrameRate;
 using ::crynsnd::TextManager;
 using ::crynsnd::fonts::DotMatrix;
 
@@ -34,6 +37,11 @@ int main() {
   text_manager.WriteLine("ABCDEFGHIJKLMNOPQRSTUVWXYZ.0123456789+-=/\\[] ?<>^:\"'!%()|@#,_");
   text_manager.WriteLine("");
   text_manager.WriteLine("ABCDEFGHIJKLMNOPQRSTUVWXYZ.0123456789+-=/\\[] ?<>^:\"'!%()|@#,_");
+
+  display.ScrollHorizontally(HorizontalScrollDirection::SCROLL_LEFT, MemoryPage::PAGE_0,
+                             MemoryPage::PAGE_0, ScrollFrameRate::RATE_5);
+  sleep_ms(4000);
+  display.StopScroll();
 
   while (1) {
   }
