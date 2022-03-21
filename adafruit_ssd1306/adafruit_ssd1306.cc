@@ -124,13 +124,14 @@ void Adafruit_SSD1306::ScrollHorizontally(HorizontalScrollDirection direction,
       page_end,  // Scroll end
       0x00,      // Dummy byte
       0xFF,      // Dummy byte
-      SSD1306_ACTIVATE_SCROLL};
+      SSD1306_ACTIVATE_SCROLL,
+  };
   WriteCommand(command, sizeof(command));
 }
 
 void Adafruit_SSD1306::StopScroll() {
   static const uint8_t command[] = {
-      0x2E,  // Deactivate scrolling
+      SSD1306_DEACTIVATE_SCROLL,
   };
   WriteCommand(command, sizeof(command));
 }
