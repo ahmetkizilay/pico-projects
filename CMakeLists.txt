@@ -14,4 +14,5 @@ add_subdirectory(display_example)
 add_subdirectory(font)
 add_subdirectory(text_manager)
 add_subdirectory(scratchpad)
+add_subdirectory(ws2812)
 

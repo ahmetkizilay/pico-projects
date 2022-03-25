@@ -1,2 +1,3 @@
 add_subdirectory(hello_pio)
 add_subdirectory(macropad_demo)
+add_subdirectory(ws2812_demo)
